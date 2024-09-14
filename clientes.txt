@@ -1,0 +1,2 @@
+Persona(nombre: gonzalo, apellido: dieguez, rut: 121212313232-2)Cliente(nombre= Gonzalo, apellido=Dieguez, rut=845454-, descuento=10)
+Cliente(nombre= Gonzalo, apellido=MARTINEZ, rut=5555-8, descuento=12)
