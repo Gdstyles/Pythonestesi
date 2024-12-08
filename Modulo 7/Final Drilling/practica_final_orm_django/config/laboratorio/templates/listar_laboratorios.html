@@ -1,0 +1,58 @@
+{% extends 'layout.html' %}
+{% load bootstrap5 %}
+{% block content %}
+<section class="container mt-5">
+  <h2>Lista Laboratorios</h2>
+
+  <!-- {# Display django.contrib.messages as Bootstrap alerts #} -->
+  {% bootstrap_messages %}
+
+
+  {% if laboratorios %}
+  <!-- tabla con laboratorios -->
+  <table class="table table-striped">
+    <thead>
+      <tr>
+        <th scope="col">ID</th>
+        <th scope="col">nombre</th>
+        <th scope="col">ciudad</th>
+        <th scope="col">pais</th>
+        <th scope="col">Acciones</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for temp in laboratorios %}
+      <tr>
+        <td>{{ temp.id }}</td>
+        <td>{{ temp.nombre }}</td>
+        <td>{{ temp.ciudad }}</td>
+        <td>{{ temp.pais }}</td>
+        <td>  
+          <a class="btn" href="{% url 'editar_laboratorio' laboratorio_id=temp.id %}" role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Editar">
+            <i class="fa fa-edit text-primary"></i>
+          </a>
+          <a class="btn" href="{% url 'eliminar_laboratorio' laboratorio_id=temp.id %}" role="button" data-bs-toggle="tooltip" data-bs-placement="top" title="Eliminar">
+            <i class="fa fa-edit text-danger"></i>
+          </a>
+        </td>
+      </tr>
+      {% empty %}
+      <tr>
+        <td colspan="4">No hay laboratorios disponibles</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
+  {% else %}
+  <!-- No hay laboratorios -->
+  <p>No hay laboratorios disponibles</p>
+  {% endif %}
+
+        <section>
+
+            <a role="button" href="{% url 'crear_laboratorio' %}" class="btn btn-primary">Crear Laboratorio</a>
+
+        </section>
+
+</section>
+{% endblock%}
